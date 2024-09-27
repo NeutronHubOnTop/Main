@@ -42,7 +42,7 @@ local Funcs = {} do
     })
   end
 
-  function Funcs:Button(Tab, Name, Func)
+  function Funcs:Button(Tab, Name, Description, Func)
     Name = type(Name) == "string" and Name or tostring(Name)
     Description = type(Description) == "string" and Description or tostring(Description)
     Func = type(Func) == "function" and Func or function() end
@@ -53,6 +53,20 @@ local Funcs = {} do
       Callback = Func
     })
   end
-end
 
-return Funcs
+  function Funcs:Textbox(Tab, Name, Default, Placeholder, Numeric, Func)
+    Name = type(Name) == "string" and Name or tostring(Name)
+    Default = type(Default) == "string" and Default or "Default"
+    Placeholder = type(Placeholder) == "string" and Placeholder or "Placeholder"
+    Numeric = type(Numeric) == "boolean" and Numeric or false
+    Func = type(Func) == "function" and Func or function() end
+
+    return Tab:AddInput("MyTextbox_" .. Name, {
+      Title = Name,
+      Default = Default,
+      Placeholder = Placeholder,
+      Numeric = Numeric,
+      Callback = Func
+    })
+  end
+end
