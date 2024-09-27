@@ -70,3 +70,5 @@ local Funcs = {} do
     })
   end
 end
+
+return Funcs
